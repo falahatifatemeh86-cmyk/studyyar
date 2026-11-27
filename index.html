@@ -281,7 +281,7 @@ html{scroll-behavior:smooth;scroll-padding-top:18px}
 }
 </style>
 
-
+<style>
 /* StudyYar three-star navigation */
 .star-menu-toggle{position:fixed;left:18px;bottom:22px;z-index:1002;width:58px;height:58px;border-radius:20px;background:linear-gradient(145deg,#8d79c5,#66539f);color:#fff;box-shadow:0 8px 24px #55418445;display:flex;align-items:center;justify-content:center;gap:2px;border:1px solid #ffffff80}
 .star-menu-toggle span{font-size:20px;line-height:1;transition:transform .25s ease}
@@ -295,7 +295,46 @@ html{scroll-behavior:smooth;scroll-padding-top:18px}
 .star-menu-panel a span{width:22px;text-align:center;color:#b58b35}
 @keyframes starMenuIn{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:480px){.star-menu-toggle{left:14px;bottom:16px;width:54px;height:54px;border-radius:18px}.star-menu-panel{left:14px;bottom:80px}}
+</style>
 
+
+<style id="studyYar-corner-layout-fix">
+/* گوشه‌چینی دکمه‌ها: منو بالا راست، نشان پایین راست */
+.star-menu-toggle{
+  left:auto!important; right:14px!important;
+  top:calc(env(safe-area-inset-top, 0px) + 14px)!important; bottom:auto!important;
+  width:54px; height:54px; border-radius:18px;
+}
+.star-menu-panel{
+  left:auto!important; right:14px!important;
+  top:calc(env(safe-area-inset-top, 0px) + 78px)!important; bottom:auto!important;
+  max-height:calc(100dvh - 100px); overflow-y:auto;
+}
+.mobile-brand-shortcut{
+  left:auto!important; right:14px!important;
+  top:auto!important; bottom:14px!important;
+  transform:none!important; width:56px!important; height:56px!important;
+}
+@media(max-width:480px){
+  .star-menu-toggle{right:12px!important;top:calc(env(safe-area-inset-top, 0px) + 12px)!important}
+  .star-menu-panel{right:12px!important;top:calc(env(safe-area-inset-top, 0px) + 74px)!important}
+  .mobile-brand-shortcut{right:12px!important;bottom:12px!important}
+}
+</style>
+
+
+<style id="studyYar-yellow-small-stars">
+/* سه ستاره کوچک‌تر و طلایی در گوشه بالای راست */
+.star-menu-toggle{
+  width:42px!important;height:42px!important;border-radius:14px!important;
+  gap:1px!important;padding:0!important;
+  background:linear-gradient(145deg,#8d79c5,#66539f)!important;
+}
+.star-menu-toggle span{font-size:13px!important;color:#ffd84d!important;line-height:1!important;
+  text-shadow:0 1px 3px #76520b80!important}
+.star-menu-toggle span:nth-child(2){font-size:16px!important}
+@media(max-width:480px){.star-menu-toggle{width:40px!important;height:40px!important}}
+</style>
 </head>
 <body id="top">
 <div class="wrap">
@@ -602,7 +641,7 @@ saveGoalSettings();
  <a href="#daily-report"><span>✦</span>گزارش پایان روز</a>
  <a href="#competition"><span>✦</span>رقابت دوستانه</a>
 </div>
-<button class="star-menu-toggle" id="starMenuToggle" type="button" aria-label="باز کردن منو" aria-expanded="false" aria-controls="starMenuPanel"><span>✦</span><span>✦</span><span>✦</span></button>
+<button class="star-menu-toggle" id="starMenuToggle" type="button" aria-label="باز کردن منو" aria-expanded="false" aria-controls="starMenuPanel"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
 <script>
 (()=>{const b=document.getElementById('starMenuToggle'),p=document.getElementById('starMenuPanel');if(!b||!p)return;const close=()=>{p.classList.remove('open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','باز کردن منو')};b.addEventListener('click',()=>{const open=!p.classList.contains('open');p.classList.toggle('open',open);b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'بستن منو':'باز کردن منو')});p.addEventListener('click',e=>{if(e.target.closest('a'))close()});document.addEventListener('click',e=>{if(!e.target.closest('#starMenuPanel')&&!e.target.closest('#starMenuToggle'))close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()})})();
 </script>
@@ -636,4 +675,14 @@ saveGoalSettings();
  .mobile-brand-shortcut{left:auto!important;right:12px!important;bottom:12px!important;transform:none!important;width:56px;height:56px;padding:2px;z-index:1000}
  body{padding-bottom:82px}
 }
+</style>
+
+<style id="studyYar-stacked-books-icon">
+/* سه کتاب رنگی با عطف و لبه‌های برگه مشخص */
+.star-menu-toggle{position:fixed!important;display:block!important}
+.star-menu-toggle span{position:absolute!important;display:block!important;height:8px!important;border-radius:2px 3px 3px 2px!important;border:1px solid #45345f!important;box-shadow:0 1px 1px #35245a66!important;transform:none!important;font-size:0!important;line-height:0!important}
+.star-menu-toggle span:nth-child(1){width:23px!important;left:9px!important;top:10px!important;background:linear-gradient(90deg,#49336f 0 16%,#8f72bd 16% 76%,#f5f0e8 76% 100%)!important;transform:rotate(-7deg)!important}
+.star-menu-toggle span:nth-child(2){width:26px!important;left:7px!important;top:19px!important;background:linear-gradient(90deg,#245b61 0 16%,#4d9a98 16% 76%,#f5f0e8 76% 100%)!important;transform:rotate(4deg)!important}
+.star-menu-toggle span:nth-child(3){width:22px!important;left:10px!important;top:28px!important;background:linear-gradient(90deg,#8a4059 0 16%,#d47b91 16% 76%,#f5f0e8 76% 100%)!important;transform:rotate(-3deg)!important}
+.star-menu-toggle[aria-expanded="true"] span{filter:brightness(1.08)}
 </style>
