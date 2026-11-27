@@ -281,6 +281,21 @@ html{scroll-behavior:smooth;scroll-padding-top:18px}
 }
 </style>
 
+
+/* StudyYar three-star navigation */
+.star-menu-toggle{position:fixed;left:18px;bottom:22px;z-index:1002;width:58px;height:58px;border-radius:20px;background:linear-gradient(145deg,#8d79c5,#66539f);color:#fff;box-shadow:0 8px 24px #55418445;display:flex;align-items:center;justify-content:center;gap:2px;border:1px solid #ffffff80}
+.star-menu-toggle span{font-size:20px;line-height:1;transition:transform .25s ease}
+.star-menu-toggle span:nth-child(2){font-size:25px}
+.star-menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(-4px) rotate(-12deg)}
+.star-menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(4px) rotate(12deg)}
+.star-menu-panel{position:fixed;left:18px;bottom:91px;z-index:1001;width:min(270px,calc(100vw - 36px));padding:12px;border:1px solid #e9e1f7;border-radius:20px;background:#fffdfd;box-shadow:0 14px 40px #44356d25;display:none}
+.star-menu-panel.open{display:grid;gap:5px;animation:starMenuIn .18s ease-out}
+.star-menu-panel a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;color:#51456f;text-decoration:none;font-size:13px}
+.star-menu-panel a:hover,.star-menu-panel a:focus{background:#f3effb;outline:none}
+.star-menu-panel a span{width:22px;text-align:center;color:#b58b35}
+@keyframes starMenuIn{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:480px){.star-menu-toggle{left:14px;bottom:16px;width:54px;height:54px;border-radius:18px}.star-menu-panel{left:14px;bottom:80px}}
+
 </head>
 <body id="top">
 <div class="wrap">
@@ -576,6 +591,22 @@ $('saveExamDate').onclick=()=>{const value=$('examDateInput').dataset.iso||'';if
 renderJalaliCalendar();
 saveGoalSettings();
 </script>
+
+<div class="star-menu-panel" id="starMenuPanel" aria-label="منوی مطالعه‌یار">
+ <a href="#top"><span>✦</span>صفحه اصلی</a>
+ <a href="#today-plan"><span>✦</span>برنامه امروز</a>
+ <a href="#focus-timer"><span>✦</span>تایمر تمرکز</a>
+ <a href="#test-entry"><span>✦</span>ثبت تست و عملکرد</a>
+ <a href="#mistakes"><span>✦</span>دفترچه اشتباهات</a>
+ <a href="#analytics"><span>✦</span>تحلیل و نمودار پیشرفت</a>
+ <a href="#daily-report"><span>✦</span>گزارش پایان روز</a>
+ <a href="#competition"><span>✦</span>رقابت دوستانه</a>
+</div>
+<button class="star-menu-toggle" id="starMenuToggle" type="button" aria-label="باز کردن منو" aria-expanded="false" aria-controls="starMenuPanel"><span>✦</span><span>✦</span><span>✦</span></button>
+<script>
+(()=>{const b=document.getElementById('starMenuToggle'),p=document.getElementById('starMenuPanel');if(!b||!p)return;const close=()=>{p.classList.remove('open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','باز کردن منو')};b.addEventListener('click',()=>{const open=!p.classList.contains('open');p.classList.toggle('open',open);b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'بستن منو':'باز کردن منو')});p.addEventListener('click',e=>{if(e.target.closest('a'))close()});document.addEventListener('click',e=>{if(!e.target.closest('#starMenuPanel')&&!e.target.closest('#starMenuToggle'))close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()})})();
+</script>
+
 </body></html>
 <style>
 /* Header refresh: wider brand banner and bottom-right floating mark */
